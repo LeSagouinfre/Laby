@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title> Labyrinthe des profondeurs</title>
+
+    <style>
+      html,
+      body,
+      #game-container {
+        margin: 0;
+        padding: 0;
+      }
+
+      #game-container {
+        min-width: 100vw;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #game-container > canvas {
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="game-container"></div>
+    <script language="Javascript">
+      function bot() {
+        var doc = document.getElementById("pxp").style;
+        var xa = doc.top;
+        var ya = doc.left;
+        xa = xa.replace("px", "");
+        ya = ya.replace("px", "");
+        var doc = document.getElementById("pop").style;
+        var x = doc.top;
+        var y = doc.left;
+        x = x.replace("px", "");
+        y = y.replace("px", "");
+        if (x > xa) {
+          var x = Number(x) - Number(1);
+        }
+        if (x < xa) {
+          var x = Number(x) + Number(1);
+        }
+        if (y > ya) {
+          var y = Number(y) - Number(1);
+        }
+        if (y < ya) {
+          var y = Number(y) + Number(1);
+        }
+        if (x == xa && y == ya) {
+          alert("Terminer !");
+          exit;
+        }
+        var doc = document.getElementById("pop").style;
+        doc.top = x + "px";
+        doc.left = y + "px";
+        setTimeout("bot()", 10);
+      }
+      function prepa() {
+        var doc = document.getElementById("surface");
+        var alea = Math.floor(Math.random() * 448 + 1);
+        var alea2 = Math.floor(Math.random() * 608 + 1);
+        doc.innerHTML +=
+          "<img id='pop' src='p1.png' height='10px'></img><img id='pxp' src='p2.png' height='10px'></img>";
+        doc = document.getElementById("pop").style;
+        doc.position = "absolute";
+        doc.top = alea + "px";
+        doc.left = alea2 + "px";
+        doc = document.getElementById("pxp").style;
+        doc.position = "absolute";
+        doc.top = "200px";
+        doc.left = "200px";
+        bot();
+      }
+      prepa();
+    </script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>

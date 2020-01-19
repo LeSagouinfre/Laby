@@ -1,2 +1,0 @@
-# Laby
-Created with CodeSandbox
